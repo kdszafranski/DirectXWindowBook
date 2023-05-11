@@ -36,6 +36,7 @@ void Graphics::initialize(HWND hw, int w, int h, bool full)
     width = w;
     height = h;
     fullscreen = full;
+    bgColor = D3DCOLOR_XRGB(0, 0, 215);
 
     //initialize Direct3D
     direct3d = Direct3DCreate9(D3D_SDK_VERSION);
@@ -112,7 +113,7 @@ HRESULT Graphics::showBackbuffer()
     result = E_FAIL;    // default to fail, replace on success
     // (this function will be moved in later versions)
     // Clear the backbuffer to lime green 
-    device3d->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0,50,215), 0.0f, 0);
+    device3d->Clear(0, NULL, D3DCLEAR_TARGET, bgColor, 0.0f, 0);
 
     // Display backbuffer to screen
     result = device3d->Present(NULL, NULL, NULL, NULL);
@@ -152,4 +153,8 @@ bool Graphics::isAdapterCompatible() {
     
     // no compatible mode found
     return false;
+}
+
+void Graphics::setBackgroundColor(COLOR_ARGB color) {
+    bgColor = color;
 }

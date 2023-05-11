@@ -10,12 +10,14 @@
 #include <Windows.h>
 #include <stdlib.h>             // for detecting memory leaks
 #include <crtdbg.h>             // for detecting memory leaks
+#include <time.h>
 #include "graphics.h"
 
 // Function prototypes
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int); 
 bool CreateMainWindow(HWND &, HINSTANCE, int);
 LRESULT WINAPI WinProc(HWND, UINT, WPARAM, LPARAM); 
+void SetRandomBackgroundColor();
 
 // Global variable
 HINSTANCE hinst;
@@ -94,13 +96,27 @@ LRESULT WINAPI WinProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
         case WM_CHAR:
             switch (wParam) {
                 case ESC_KEY:
-                case SPACE_KEY:
                     PostQuitMessage(0);
                     return 0;
+                case SPACE_KEY:
+                    // set random bg color
+                    SetRandomBackgroundColor();
                 }
     }
 
     return DefWindowProc( hWnd, msg, wParam, lParam );
+}
+
+//=============================================================================
+// Utility to choose and set a randome bg color
+//=============================================================================
+void SetRandomBackgroundColor() {
+    time_t t;
+    srand((unsigned)time(&t));
+    const DWORD R = rand();
+    const DWORD G = rand();
+    const DWORD B = rand();
+    graphics->setBackgroundColor(D3DCOLOR_XRGB(R, G, B));
 }
 
 //=============================================================================

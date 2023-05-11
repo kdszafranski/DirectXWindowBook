@@ -42,6 +42,7 @@ private:
     int         width;
     int         height;
     D3DDISPLAYMODE pMode;
+    COLOR_ARGB bgColor;
 
     // (For internal engine use only. No user serviceable parts inside.)
     // Initialize D3D presentation parameters
@@ -68,6 +69,9 @@ public:
 
     // Display the offscreen backbuffer to the screen.
     HRESULT showBackbuffer();
+
+    // set the background color
+    void setBackgroundColor(COLOR_ARGB color);
 };
 
 #endif
