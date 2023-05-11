@@ -94,6 +94,7 @@ LRESULT WINAPI WinProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
         case WM_CHAR:
             switch (wParam) {
                 case ESC_KEY:
+                case SPACE_KEY:
                     PostQuitMessage(0);
                     return 0;
                 }

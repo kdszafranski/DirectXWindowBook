@@ -26,6 +26,7 @@ const UINT  GAME_HEIGHT = 600;              // height of game in pixels
 // In this game simple constants are used for key mappings. If variables were used
 // it would be possible to save and restore key mappings from a data file.
 const UCHAR ESC_KEY      = VK_ESCAPE;   // escape key
+const UCHAR SPACE_KEY    = VK_SPACE;
 
 //=============================================================================
 // Function templates for safely dealing with pointer referenced items.
