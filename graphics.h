@@ -41,10 +41,12 @@ private:
     bool        fullscreen;
     int         width;
     int         height;
+    D3DDISPLAYMODE pMode;
 
     // (For internal engine use only. No user serviceable parts inside.)
     // Initialize D3D presentation parameters
     void    initD3Dpp();
+    bool    isAdapterCompatible();
 
 public:
     // Constructor
