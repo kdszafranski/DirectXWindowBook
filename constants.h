@@ -19,7 +19,7 @@
 // window
 const char CLASS_NAME[] = "WinMain";
 const char GAME_TITLE[] = "DirectX Window";
-const bool FULLSCREEN = TRUE;              // windowed or fullscreen
+const bool FULLSCREEN = false;              // windowed or fullscreen
 const UINT  GAME_WIDTH =  800;              // width of game in pixels
 const UINT  GAME_HEIGHT = 600;              // height of game in pixels
 

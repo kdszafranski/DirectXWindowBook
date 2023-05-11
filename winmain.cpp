@@ -156,6 +156,19 @@ bool CreateMainWindow(HWND &hwnd, HINSTANCE hInstance, int nCmdShow)
     if (!hwnd)
         return false;
 
+    if (!FULLSCREEN) {
+        // windowed mode
+        RECT clientRect;
+        GetClientRect(hwnd, &clientRect);
+
+        MoveWindow(hwnd, 
+            0, 0,                                               // left, top
+            GAME_WIDTH + (GAME_WIDTH - clientRect.right),       // right
+            GAME_HEIGHT + (GAME_HEIGHT - clientRect.bottom),    // bottom
+            TRUE);  // repaint the window?
+
+    }
+
     // Show the window
     ShowWindow(hwnd, nCmdShow);
 
