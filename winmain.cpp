@@ -91,7 +91,14 @@ LRESULT WINAPI WinProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
             //tell Windows to kill this program
             PostQuitMessage(0);
             return 0;
+        case WM_CHAR:
+            switch (wParam) {
+                case ESC_KEY:
+                    PostQuitMessage(0);
+                    return 0;
+                }
     }
+
     return DefWindowProc( hWnd, msg, wParam, lParam );
 }
 
@@ -123,11 +130,19 @@ bool CreateMainWindow(HWND &hwnd, HINSTANCE hInstance, int nCmdShow)
     if (RegisterClassEx(&wcx) == 0)    // if error
         return false;
 
+    DWORD style;
+    
+    if (FULLSCREEN == true) {
+        style = WS_EX_TOPMOST | WS_VISIBLE | WS_POPUP;
+    } else {
+        style = WS_OVERLAPPEDWINDOW;
+    }
+
     // Create window
     hwnd = CreateWindow(
         CLASS_NAME,             // name of the window class
         GAME_TITLE,             // title bar text
-        WS_OVERLAPPEDWINDOW,    // window style
+        style,                  // window style
         CW_USEDEFAULT,          // default horizontal position of window
         CW_USEDEFAULT,          // default vertical position of window
         GAME_WIDTH,             // width of window
